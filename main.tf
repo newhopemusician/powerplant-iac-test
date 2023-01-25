@@ -21,9 +21,11 @@ data "aws_ami" "ami_name" {
 resource "aws_instance" "web" {
 	#ami = data.aws_ami.ami_name.id
 	ami = "ami-0a75701b4eba513a3"
-	subnet_id = aws_subnet.publicsubnet.id
+	#subnet_id = aws_subnet.publicsubnet.id
+	subnet_id = vpc.aws_subnet.publicsubnet.id
 	instance_type = "t2.2xlarge"
-        vpc_security_group_ids = [aws_security_group.allow_all.id]
+        #vpc_security_group_ids = [aws_security_group.allow_all.id]
+	vpc_security_group_ids = [vpc.aws_security_group.allow_all.id]
 	associate_public_ip_address = "true"
 
 	
