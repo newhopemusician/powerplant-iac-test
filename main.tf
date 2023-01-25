@@ -19,6 +19,19 @@ resource "aws_instance" "web" {
 	ami = "ami-02fe99ea40f8d73fe"
 	subnet_id = aws_subnet.publicsubnet.id
 	instance_type = "t2.micro"
+	
+        connection {
+                type = "ssh"
+                user = "root"
+                password = "12523!@%@#"
+                host = self.public_ip
+        }
+
+        provisioner "remote-exec" {
+                inline = [
+                        "/root/webv1.sh",
+                ]
+        }
 
 	tags = {
 		Name = "Donuts"
