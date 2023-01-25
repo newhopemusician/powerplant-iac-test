@@ -5,6 +5,10 @@ provider "aws" {
 
 }
 
+module "vpc" {
+  source = "github.com/newhopemusician/powerplant-network"
+}
+
 data "aws_ami" "ami_name" {
 	most_recent = true
 
