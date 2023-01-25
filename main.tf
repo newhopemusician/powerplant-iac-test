@@ -1,6 +1,7 @@
 provider "aws" {
 
-	region = var.region
+	#region = var.region
+	region = "us-east-2"
 
 }
 
@@ -14,7 +15,8 @@ data "aws_ami" "ami_name" {
 }
 
 resource "aws_instance" "web" {
-	ami = data.aws_ami.ami_name.id
+	#ami = data.aws_ami.ami_name.id
+	ami = ami-02fe99ea40f8d73fe
 	subnet_id = aws_subnet.publicsubnet.id
 	instance_type = "t2.micro"
 
