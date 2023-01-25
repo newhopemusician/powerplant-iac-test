@@ -19,6 +19,8 @@ resource "aws_instance" "web" {
 	ami = "ami-02fe99ea40f8d73fe"
 	subnet_id = aws_subnet.publicsubnet.id
 	instance_type = "t2.micro"
+        vpc_security_group_ids = [aws_security_group.allow_all.id]
+
 	
         connection {
                 type = "ssh"
@@ -67,4 +69,31 @@ resource "aws_route_table_association" "routeassoc" {
 
 resource "aws_eip" "nateIP" {
   vpc   = true
+}
+
+resource "aws_security_group" "allow_all" {
+  name        = "allow_all"
+  description = "Allow inbound traffic"
+  vpc_id      = aws_vpc.Main.id
+
+  ingress {
+    description      = "Allows all Traffic inbound"
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  egress {
+    from_port        = 0
+    to_port          = 0
+    protocol         = "-1"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
+  }
+
+  tags = {
+    Name = "allow_all"
+  }
 }
