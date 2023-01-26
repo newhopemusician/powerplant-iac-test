@@ -21,7 +21,7 @@ data "aws_ami" "ami_name" {
 resource "aws_instance" "web" {
 	#ami = data.aws_ami.ami_name.id
 	#ami = "ami-0a75701b4eba513a3"
-	ami = "ami-03fd3e2aa642d8bfa"
+	ami = "ami-0592ba606c3e12141"
 	#subnet_id = aws_subnet.publicsubnet.id
 	subnet_id = module.vpc.subnetid
 	instance_type = "t2.micro"
