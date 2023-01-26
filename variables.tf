@@ -13,7 +13,3 @@ variable "private_subnets" {
 variable "region" {
 	default = "us-east-2"
 }
-
-variable "sshpw" {
-	default = "12523!@%@#"
-}
