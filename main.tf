@@ -29,21 +29,6 @@ resource "aws_instance" "web" {
 	vpc_security_group_ids = [module.vpc.sgid]
 	associate_public_ip_address = "true"
 
-	
-        connection {
-                type = "ssh"
-                user = "root"
-                #password = "12523!@%@#"
-		password = var.sshpw
-                host = self.public_ip
-        }
-
-        provisioner "remote-exec" {
-                inline = [
-                        "/root/webv1.sh",
-                ]
-        }
-
 	tags = {
 		Name = "Donuts"
 	}
