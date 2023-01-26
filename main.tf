@@ -24,7 +24,7 @@ resource "aws_instance" "web" {
 	ami = "ami-0e245e60fe15164b6"
 	#subnet_id = aws_subnet.publicsubnet.id
 	subnet_id = module.vpc.subnetid
-	instance_type = "t2.2xlarge"
+	instance_type = "t2.micro"
         #vpc_security_group_ids = [aws_security_group.allow_all.id]
 	vpc_security_group_ids = [module.vpc.sgid]
 	associate_public_ip_address = "true"
