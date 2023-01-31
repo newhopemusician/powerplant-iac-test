@@ -1,7 +1,6 @@
 provider "aws" {
 
-	#region = var.region
-	region = "us-east-2"
+	region = var.region
 
 }
 
@@ -9,27 +8,23 @@ module "vpc" {
   source = "github.com/newhopemusician/powerplant-network"
 }
 
-data "aws_ami" "ami_name" {
-	most_recent = true
-
-	filter {
-		name = "name"
-		values = ["amzn2-ami-kernel-5.10-hvm-2.0.20221210.1-x86_64-gp2*"]
-	}
-}
-
 resource "aws_instance" "web" {
-	#ami = data.aws_ami.ami_name.id
-	#ami = "ami-0a75701b4eba513a3"
-	ami = "ami-0592ba606c3e12141"
-	#subnet_id = aws_subnet.publicsubnet.id
-	subnet_id = module.vpc.subnetid
-	instance_type = "t2.micro"
-        #vpc_security_group_ids = [aws_security_group.allow_all.id]
-	vpc_security_group_ids = [module.vpc.sgid]
+	ami = "ami-061e388c127cfdae7"
+	subnet_id = aws_subnet.publicsubnet.id
+	instance_type = "t2.small"
+  	vpc_security_group_ids = [aws_security_group.allow_all.id]
 	associate_public_ip_address = "true"
 
 	tags = {
-		Name = "Donuts"
+		Name = "Doh!"
 	}
+}
+
+data "aws_eip" "bac_ip" {
+	public_ip = "3.22.150.18"
+}
+
+resource "aws_eip_association" "bac_assoc" {
+	instance_id = aws_instance.web.id
+	allocation_id = data.aws_eip.bac_ip.id
 }
