@@ -9,7 +9,7 @@ module "vpc" {
 resource "aws_instance" "web" {
 	ami = "ami-061e388c127cfdae7"
 	subnet_id = module.vpc.subnetid
-	instance_type = "t2.micro"
+	instance_type = "t2.small"
 	vpc_security_group_ids = [module.vpc.sgid]
 
 	tags = {
