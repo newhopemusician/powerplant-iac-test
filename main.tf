@@ -2,15 +2,20 @@ provider "aws" {
 	region = var.region
 }
 
-module "vpc" {
-  source = "github.com/newhopemusician/powerplant-network-module"
+module "network-module" {
+  source  = "tf.lnxservices.com/springfieldpower-2024/network-module/powerplant"
+  version = "0.0.1"
 }
+
+#module "vpc" {
+#  source = "github.com/newhopemusician/powerplant-network-module"
+#}
 
 resource "aws_instance" "web" {
 	ami = "ami-061e388c127cfdae7"
-	subnet_id = module.vpc.subnetid
+	subnet_id = module.network-module.subnetid
 	instance_type = "t2.small"
-	vpc_security_group_ids = [module.vpc.sgid]
+	vpc_security_group_ids = [module.network-module.sgid]
 
 	tags = {
 		Name = "Doh!"
