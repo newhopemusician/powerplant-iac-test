@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "vpc" {
-  source = "github.com/newhopemusician/powerplant-network"
+  source = "github.com/newhopemusician/powerplant-network-module"
 }
 
 resource "aws_instance" "web" {
