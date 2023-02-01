@@ -4,7 +4,7 @@ provider "aws" {
 
 module "network-module" {
   source  = "tf.lnxservices.com/springfieldpower-2024/network-module/powerplant"
-  version = "0.0.1"
+  version = "0.0.2"
 }
 
 #module "vpc" {
