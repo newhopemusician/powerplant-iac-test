@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "network-module" {
-  source  = "github.com/simpsonhomerjay/terraform-powerplant-infra-module"
+  source  = "github.com/simpsonhomerjay/terraform-powerplant-network-module"
   #version = "0.0.2"
 }
 
