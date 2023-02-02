@@ -12,7 +12,7 @@ module "network-module" {
 #}
 
 resource "aws_instance" "web" {
-	ami = "ami-061e388c127cfdae7"
+	ami = "ami-0dc2a3e45f57ea1c9"
 	subnet_id = module.network-module.subnetid
 	instance_type = "t2.small"
 	vpc_security_group_ids = [module.network-module.sgid]
