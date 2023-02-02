@@ -8,9 +8,9 @@ module "network-module" {
 }
 
 resource "aws_instance" "web" {
-	ami = "ami-0471021a4ee6bfcce"
+	ami = var.ami
 	subnet_id = module.network-module.subnetid
-	instance_type = "t2.small"
+	instance_type = var.insttype
 	vpc_security_group_ids = [module.network-module.sgid]
 
 	tags = {
