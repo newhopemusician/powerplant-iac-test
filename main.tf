@@ -3,7 +3,7 @@ provider "aws" {
 }
 
 module "network-module" {
-  source  = "tf.lnxservices.com/springfieldpower-2024/network-module/powerplant"
+  source  = "tf.lnxservices.com/springfieldpower-2023/network-module/powerplant"
   #version = "0.0.2"
 }
 
