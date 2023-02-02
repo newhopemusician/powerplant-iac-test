@@ -7,10 +7,6 @@ module "network-module" {
   version = "0.0.2"
 }
 
-#module "vpc" {
-#  source = "github.com/newhopemusician/powerplant-network-module"
-#}
-
 resource "aws_instance" "web" {
 	ami = "ami-0471021a4ee6bfcce"
 	subnet_id = module.network-module.subnetid
